@@ -1,0 +1,7 @@
+{
+  "name": "vue3-by-example-calculator-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
