@@ -83,4 +83,5 @@ import { useStore } from "vuex";
 import { CurrencyConversion } from "@/interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { useRoute } from "vue-router";
+
 </script>
