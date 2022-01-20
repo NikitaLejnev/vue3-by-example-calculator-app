@@ -58,3 +58,29 @@
     </ion-content>
   </ion-page>
 </template>
+
+<script lang="ts">
+import {
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonSelect,
+  IonInput,
+  IonLabel,
+  IonButton,
+  IonList,
+  IonItem,
+  IonSelectOption,
+} from "@ionic/vue";
+import { computed, reactive, ref, watch } from "vue";
+import { currencies as currenciesArray } from "../constants";
+import axios from "axios";
+import { useStore } from "vuex";
+import { CurrencyConversion } from "@/interfaces";
+import { v4 as uuidv4 } from "uuid";
+import { useRoute } from "vue-router";
+</script>
