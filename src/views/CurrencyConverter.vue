@@ -110,6 +110,15 @@ export default {
     const currencies = reactive(currenciesArray);
     const store = useStore();
     const route = useRoute();
+    const fromCurrencies = computed(() => {
+      return currencies.filter(({ abbreviation }) => abbreviation !== toCurrency.value);
+    });
+    const toCurrencies = computed(() => {
+      return currencies.filter(({ abbreviation }) => abbreviation !== fromCurrency.value);
+    });
+    const amountValid = computed(() => {
+      return +amount.value >= 0;
+    });
 
     return {
       amount,
