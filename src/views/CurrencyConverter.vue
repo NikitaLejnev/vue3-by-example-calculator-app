@@ -8,6 +8,7 @@
         <ion-title> Currency Converter </ion-title>
       </ion-toolbar>
     </ion-header>
+
     <ion-content fullscreen>
       <div id="container">
         <ion-list>
@@ -21,13 +22,27 @@
               placeholder="Amount"
             ></ion-input>
           </ion-item>
+
           <ion-item>
-            <ion-label> Currency to Convert From </ion-label>
+            <ion-label> Currency to Convert From</ion-label>
             <ion-select v-model="fromCurrency" ok-text="Okay" cancel-text="Dismiss">
               <ion-select-option :value="c.abbreviation" v-for="c of fromCurrencies" :key="c.name">
                 {{ c.name }}
               </ion-select-option>
             </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Currency to Convert To</ion-label>
+            <ion-select v-model="toCurrency" ok-text="Okay" cancel-text="Dismiss">
+              <ion-select-option :value="c.abbreviation" v-for="c of toCurrencies" :key="c.name">
+                {{ c.name }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-button size="default" @click.stop="calculate"> Calculate </ion-button>
           </ion-item>
         </ion-list>
       </div>
