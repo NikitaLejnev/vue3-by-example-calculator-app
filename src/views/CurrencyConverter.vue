@@ -84,4 +84,23 @@ import { CurrencyConversion } from "@/interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { useRoute } from "vue-router";
 
+export default {
+  name: "CurrencyConverter",
+  components: {
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonMenuButton,
+    IonPage,
+    IonTitle,
+    IonToolbar,
+    IonSelect,
+    IonInput,
+    IonLabel,
+    IonButton,
+    IonList,
+    IonItem,
+    IonSelectOption,
+  },
+};
 </script>
