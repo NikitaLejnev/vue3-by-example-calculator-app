@@ -21,6 +21,14 @@
               placeholder="Amount"
             ></ion-input>
           </ion-item>
+          <ion-item>
+            <ion-label> Currency to Convert From </ion-label>
+            <ion-select v-model="fromCurrency" ok-text="Okay" cancel-text="Dismiss">
+              <ion-select-option :value="c.abbreviation" v-for="c of fromCurrencies" :key="c.name">
+                {{ c.name }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
         </ion-list>
       </div>
     </ion-content>
