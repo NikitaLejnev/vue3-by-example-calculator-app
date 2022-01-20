@@ -45,6 +45,15 @@
             <ion-button size="default" @click.stop="calculate"> Calculate </ion-button>
           </ion-item>
         </ion-list>
+
+        <ion-list v-if="result">
+          <ion-item>
+            <ion-label>Result</ion-label>
+            <ion-label class="ion-text-right">
+              {{ amount }} {{ fromCurrency }} is {{ result.toFixed(2) }} {{ toCurrency }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
       </div>
     </ion-content>
   </ion-page>
