@@ -102,5 +102,27 @@ export default {
     IonItem,
     IonSelectOption,
   },
+  setup() {
+    const amount = ref(0);
+    const fromCurrency = ref("USD");
+    const toCurrency = ref("CAD");
+    const result = ref(0);
+    const currencies = reactive(currenciesArray);
+    const store = useStore();
+    const route = useRoute();
+
+    return {
+      amount,
+      fromCurrency,
+      toCurrency,
+      currencies,
+      fromCurrencies,
+      toCurrencies,
+      amountValid,
+      calculate,
+      result,
+      addToHistory,
+    };
+  },
 };
 </script>
