@@ -146,6 +146,29 @@ export default {
       result.value = amount.value * rates[toCurrency.value];
     };
 
+    watch(
+      () => route.query,
+      (query) => {
+        const { id: queryId } = query;
+        const { history } = store.state;
+        const entry = history.find(
+          ({ id }: CurrencyConversion) => id === queryId
+        );
+        if (!entry) {
+          return;
+        }
+        const {
+          fromCurrency: queryFromCurrency,
+          toCurrency = queryToCurrency,
+          amount = queryAmount,
+        }: CurrencyConversion = entry;
+        fromCurrency.value = queryFromCurrency;
+        toCurrency.value = queryToCurrency;
+        amount.value = queryAmount;
+      },
+      { immediate: true }
+    );
+
     return {
       amount,
       fromCurrency,
