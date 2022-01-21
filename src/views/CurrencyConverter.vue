@@ -84,6 +84,10 @@ import { CurrencyConversion } from "@/interfaces";
 import { v4 as uuidv4 } from "uuid";
 import { useRoute } from "vue-router";
 
+interface Abbrev {
+  abbreviation: string;
+}
+
 export default {
   name: "CurrencyConverter",
   components: {
@@ -111,10 +115,10 @@ export default {
     const store = useStore();
     const route = useRoute();
     const fromCurrencies = computed(() => {
-      return currencies.filter(({ abbreviation }) => abbreviation !== toCurrency.value);
+      return currencies.filter(({ abbreviation }: Abbrev) => abbreviation !== toCurrency.value);
     });
     const toCurrencies = computed(() => {
-      return currencies.filter(({ abbreviation }) => abbreviation !== fromCurrency.value);
+      return currencies.filter(({ abbreviation }: Abbrev) => abbreviation !== fromCurrency.value);
     });
     const amountValid = computed(() => {
       return +amount.value >= 0;
@@ -123,7 +127,7 @@ export default {
 
     const calculate = async () => {
       result.value = 0;
-      if (!amountValid) {
+      if (!amountValid.value) {
         return;
       }
       addToHistory({
