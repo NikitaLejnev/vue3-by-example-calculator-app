@@ -119,6 +119,28 @@ export default {
     const amountValid = computed(() => {
       return +amount.value >= 0;
     });
+    const addToHistory = (entry: CurrencyConversion) => store.commit("addToHistory", entry);
+
+    const calculate = async () => {
+      result.value = 0;
+      if (!amountValid) {
+        return;
+      }
+      addToHistory({
+        id: uuidv4(),
+        fromCurrency: fromCurrency.value,
+        toCurrency: toCurrency.value,
+        amount: amount.value,
+      });
+      const {
+        data: { rates },
+      } = await axios.get("https://api.exchangeratesapi.io/latest", {
+        params: {
+          base: fromCurrency.value,
+        },
+      });
+      result.value = amount.value * rates[toCurrency.value];
+    };
 
     return {
       amount,
