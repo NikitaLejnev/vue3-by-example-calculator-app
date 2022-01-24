@@ -44,10 +44,15 @@ import {
   IonList,
   IonItem,
 } from "@ionic/vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+import { CurrencyConversion, TipCalculation } from "@/interfaces";
+import { useRouter } from "vue-router";
 import { defineComponent } from "vue";
+type HistoryEntry = CurrencyConversion | TipCalculation;
 
 export default defineComponent({
-  name: "Home",
+  name: "HomePage",
   components: {
     IonButtons,
     IonContent,
