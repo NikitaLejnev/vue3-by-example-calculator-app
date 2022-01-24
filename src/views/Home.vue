@@ -8,7 +8,7 @@
         <ion-title>Home</ion-title>
       </ion-toolbar>
     </ion-header>
-    
+
     <ion-content fullscreen>
       <div id="container">
         <ion-list>
@@ -29,3 +29,78 @@
     </ion-content>
   </ion-page>
 </template>
+
+<script lang="ts">
+import {
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonLabel,
+  IonButton,
+  IonList,
+  IonItem,
+} from "@ionic/vue";
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Home",
+  components: {
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonMenuButton,
+    IonPage,
+    IonTitle,
+    IonToolbar,
+    IonLabel,
+    IonButton,
+    IonList,
+    IonItem,
+  },
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const history = computed(() => store.state.history);
+    const historyWithTypes = computed(() => {
+      return history.value.map((history: HistoryEntry): HistoryEntry & {
+        type: string;
+      } => {
+        if ("subtotal" in history) {
+          return {
+            ...history,
+            type: "tip",
+          };
+        }
+        return {
+          ...history,
+          type: "conversion",
+        };
+      });
+    });
+    
+    const go = (history: HistoryEntry & { type: string }) => {
+      const { type, id } = history;
+      if (type === "tip") {
+        router.push({ path: "/tips-calculator", query: { id } });
+      } else {
+        router.push({ path: "/currency-converter", query: { id } });
+      }
+    };
+
+    const deleteEntry = (index: number) => {
+      store.commit("removeHistoryEntry", index);
+    };
+    
+    return {
+      history,
+      historyWithTypes,
+      go,
+      deleteEntry,
+    };
+  },
+});
+</script>
